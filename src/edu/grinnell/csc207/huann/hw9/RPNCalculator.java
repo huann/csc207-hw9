@@ -3,83 +3,145 @@ package edu.grinnell.csc207.huann.hw9;
 import java.math.double;
 import java.util.Iterator;
 
+import taojava.util.ArrayBasedStack;
+
 /**
- * @author 
- * @author 
- * @author 
+ * @author Ann Hu
+ * @author Kyle Moorehead
+ * @author Tim Youtz
  * 
- * Citation:
+ * Citation: We referred to the following for the idea of using Double.parseDouble: 
  * http://stackoverflow.com/questions/5769669/convert-value-string-to-double
  * 
  */
 
-public class RPNCalculator implements Stack {
+public class RPNCalculator<T> implements Stack<T> {
+    // +--------+----------------------------------------------------------
+    // | Fields |
+    // +--------+
 
-	// Constructors
-	public String[] 
-	
-	// ITERABLE METHODS
-	@Override
-	public Iterator<T> iterator() {
-		return new Iterator<T>(this);
-	} // iterator()
+    /**
+     * The values in the stack.
+     */
+    T[] values;
+
+    /**
+     * The number of values in the stack.
+     */
+    int size;
+
+    // +--------------+----------------------------------------------------
+    // | Constructors |
+    // +--------------+
+
+    /**
+     * Create a new stack that holds up to capacity elements.
+     */
+    @SuppressWarnings({"unchecked"})    // Handle array casting
+    public ArrayBasedStack(int capacity) throws Exception {
+        if (capacity <= 0) {
+            throw new Exception("Stacks must have a positive capacity.");
+        } // if (capacity <= 0)
+        this.values = (T[]) new Object[capacity];
+        this.size = 0;
+    } // ArrayBasedStack(int)
+
+    // +---------------+---------------------------------------------------
+    // | Stack Methods |
+    // +---------------+
+
+    public void push(T val) throws Exception {
+        this.put(val);
+    } // push(T)
+
+    public T pop() throws Exception {
+        return this.get();
+    } // pop
+
 
 	@Override
-	public void put(Object val) throws Exception {
-		this.contents[this.top++] = newvalue;
-	}
-
-	@Override
-	public void push(Object val) throws Exception {
-		// TODO Auto-generated method stub		
-	}
-
-	@Override
-	public void pop(Object val) throws Exception {
+	public void put(T val) throws Exception {
 		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
-	public void add(Object val1, Object val2) throws Exception {
-		// TODO Auto-generated method stub		
+	public void add(T val1, T val2) throws Exception {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
-	public void subtract(Object val1, Object val2) throws Exception {
-		// TODO Auto-generated method stub		
+	public void subtract(T val1, T val2) throws Exception {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
-	public void multiply(Object val1, Object val2) throws Exception {
-		// TODO Auto-generated method stub		
+	public void multiply(T val1, T val2) throws Exception {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
-	public void divide(Object val1, Object val2) throws Exception {
-		// TODO Auto-generated method stub		
+	public void divide(T val1, T val2) throws Exception {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
-	public void exponentiate(Object val1, Object val2) throws Exception {
-		// TODO Auto-generated method stub		
+	public void exponentiate(T val1, T val2) throws Exception {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
-	public void peek(Object val) throws Exception {
-		// TODO Auto-generated method stub		
+	public void peek() throws Exception {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
-	public void see(Object[] val) throws Exception {
-		// TODO Auto-generated method stub	
+	public void see() throws Exception {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
-	public void clear(Object[] val) throws Exception {
-		// TODO Auto-generated method stub		
+	public void clear() throws Exception {
+		// TODO Auto-generated method stub
+		
 	}
 
-	
+} // ArrayBasedStack<T>
+
+class RPNIterator<T> implements Iterator<T> {
+    // +--------+----------------------------------------------------------
+    // | Fields |
+    // +--------+
+
+    /**
+     * The current position in the iteration.
+     */
+    int i;  
+
+    /**
+     * The array that contains the values in the stack.
+     */
+    T[] values;
+
+
+    // +--------------+----------------------------------------------------
+    // | Constructors |
+    // +--------------+
+
+    /**
+     * Create a new iterator.
+     */
+    public RPNIterator(RPNCalculator<T> abs) {
+        this.i = abs.size;
+        this.values = (T[]) abs.values;
+    } // RPNIterator
 
 	/*
 	 * Given a simple arithmetic expression written in Reverse Polish Notation
@@ -92,8 +154,9 @@ public class RPNCalculator implements Stack {
 		String[] arrExpr = expr.split(" ");
 		// take the first number as temporary answer
 		double ans = Double.parseDouble(arrExpr[0]);
-		String operator;
-/**		while (operator == '/0') {
+		
+/**		String operator;
+		while (operator == '/0') {
 			if (arrExpr[i].equals("+")) {
 				operator = arrExpr[i];
 			}
@@ -139,6 +202,5 @@ public class RPNCalculator implements Stack {
 			
 		} // for
 		return ans;
-	}
-
-} // rpnEval(string [])
+	} // rpnEval(string [])
+} // RPNCalculator
