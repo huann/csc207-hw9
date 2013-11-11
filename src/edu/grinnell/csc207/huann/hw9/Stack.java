@@ -7,7 +7,6 @@ public interface Stack<T> extends Iterable {
 	/**
 	 * Add a new element to the top of the stack.
 	 */
-
 	public void put(T val) throws Exception;
 
 	/**
@@ -22,6 +21,7 @@ public interface Stack<T> extends Iterable {
 	 */
 	public void pop(T val) throws Exception;
 
+	
 	public void add(T val1, T val2) throws Exception;
 
 	public void subtract(T val1, T val2) throws Exception;
