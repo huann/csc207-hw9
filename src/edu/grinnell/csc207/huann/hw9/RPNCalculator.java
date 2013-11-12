@@ -1,9 +1,6 @@
 package edu.grinnell.csc207.huann.hw9;
 
-import java.math.double;
 import java.util.Iterator;
-
-import taojava.util.ArrayBasedStack;
 
 /**
  * @author Ann Hu
@@ -38,13 +35,54 @@ public class RPNCalculator<T> implements Stack<T> {
      * Create a new stack that holds up to capacity elements.
      */
     @SuppressWarnings({"unchecked"})    // Handle array casting
-    public ArrayBasedStack(int capacity) throws Exception {
+    public RPNCalculator(int capacity) throws Exception {
         if (capacity <= 0) {
             throw new Exception("Stacks must have a positive capacity.");
         } // if (capacity <= 0)
         this.values = (T[]) new Object[capacity];
         this.size = 0;
     } // ArrayBasedStack(int)
+
+
+    // +-------------------------+-----------------------------------------
+    // | LinearStructure Methods |
+    // +-------------------------+
+
+    @Override
+    public boolean isEmpty() {
+        return this.size <= 0;
+    } // isEmpty()
+
+    @Override
+    public boolean isFull() {
+        return this.size == this.values.length;
+    } // isFull()
+
+    @Override
+    public T peek() {
+        return this.values[this.size-1];
+    } // peek()
+
+    @Override
+    public void put(T val) throws Exception {
+        if (this.isFull()) {
+            throw new Exception("full");
+        } // if full
+        this.values[this.size++] = val;
+    } // put(T)
+
+    @Override
+    public T get() throws Exception {
+        if (this.isEmpty()) {
+            throw new Exception("empty");
+        } // if empty
+        return values[--size];
+    } // get()
+
+    @Override
+    public Iterator<T> iterator() {
+        return new RPNIterator<T>(this);
+    } // iterator()
 
     // +---------------+---------------------------------------------------
     // | Stack Methods |
@@ -58,45 +96,34 @@ public class RPNCalculator<T> implements Stack<T> {
         return this.get();
     } // pop
 
+	@Override
+	public void add() throws Exception {
+		int a, b;
+		a = Double.parseDouble(pop())
+		pop();
+		
+	}
 
 	@Override
-	public void put(T val) throws Exception {
+	public void subtract() throws Exception {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void add(T val1, T val2) throws Exception {
+	public void multiply() throws Exception {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void subtract(T val1, T val2) throws Exception {
+	public void divide() throws Exception {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void multiply(T val1, T val2) throws Exception {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void divide(T val1, T val2) throws Exception {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void exponentiate(T val1, T val2) throws Exception {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void peek() throws Exception {
+	public void exponentiate() throws Exception {
 		// TODO Auto-generated method stub
 		
 	}
@@ -149,58 +176,61 @@ class RPNIterator<T> implements Iterator<T> {
 	 * addition, subtraction, multiplication, division, printing the top value,
 	 * printing the whole stack, clearing the stack, and exponentiation.
 	 */
-	public static double rpnEval(String expr) {
+    
+    @SuppressWarnings({"unchecked"})
+	public void rpnEval(String expr) {
 		// use the spaces in the expression as a separator
-		String[] arrExpr = expr.split(" ");
-		// take the first number as temporary answer
-		double ans = Double.parseDouble(arrExpr[0]);
+		T[] rpnExpr = (T[]) expr.split(" ");
 		
 /**		String operator;
 		while (operator == '/0') {
-			if (arrExpr[i].equals("+")) {
-				operator = arrExpr[i];
+			if (rpnExpr[i].equals("+")) {
+				operator = rpnExpr[i];
 			}
-			else if (arrExpr[i].equals("-"))
-				operator = arrExpr[i];
+			else if (rpnExpr[i].equals("-"))
+				operator = rpnExpr[i];
 			
-			else if (arrExpr[i].equals("*"))
-				operator = arrExpr[i];
+			else if (rpnExpr[i].equals("*"))
+				operator = rpnExpr[i];
 			
-			else if (arrExpr[i].equals("/"))
-				operator = arrExpr[i];
+			else if (rpnExpr[i].equals("/"))
+				operator = rpnExpr[i];
 			
-			else if (arrExpr[i].equals("^"))
-				operator = arrExpr[i];
+			else if (rpnExpr[i].equals("^"))
+				operator = rpnExpr[i];
 			
-			else if (arrExpr[i].equals("p"))
-				operator = arrExpr[i];
+			else if (rpnExpr[i].equals("p"))
+				operator = rpnExpr[i];
 			
-			else if (arrExpr[i].equals("s"))
-				operator = arrExpr[i];
+			else if (rpnExpr[i].equals("s"))
+				operator = rpnExpr[i];
 			
-			else if (arrExpr[i].equals("c"))
-				operator = arrExpr[i];
+			else if (rpnExpr[i].equals("c"))
+				operator = rpnExpr[i];
 		}
 		*/
 		
-		for (int i = 0; i < arrExpr.length; i++) {
-			if (arrExpr[i].equals("+")) {
-				ans = ans.add(arrExpr[i + 1]));
+		for (int i = 0; i < rpnExpr.length; i++) {
+			if (rpnExpr[i].equals("+")) {
+				add();
 			} // if addition
-			if (arrExpr[i].equals("-")) {
-				ans = ans.subtract((arrExpr[i + 1]));
+			if (rpnExpr[i].equals("-")) {
+				subtract();
 			} // if subtraction
-			if (arrExpr[i].equals("*")) {
-				ans = ans.multiply((arrExpr[i + 1]));
+			if (rpnExpr[i].equals("*")) {
+				multiply();
 			} // if multiplication
-			if (arrExpr[i].equals("/")) {
-				ans = ans.divide((arrExpr[i + 1]));
+			if (rpnExpr[i].equals("/")) {
+				divide();
 			} // if division
-			if (arrExpr[i].equals("^")) {
-				ans = ans.pow(Integer.valueOf(arrExpr[i + 1]));
+			if (rpnExpr[i].equals("^")) {
+				exponentiate();
 			} // if exponentiation
 			
 		} // for
 		return ans;
+	}
+
+		
 	} // rpnEval(string [])
 } // RPNCalculator

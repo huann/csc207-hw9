@@ -19,32 +19,32 @@ public interface Stack<T> extends Iterable<T> {
 	 * Remove the element at the position of the iterator from the stack and
 	 * more the iterator forward in the stack.
 	 */
-	public void pop() throws Exception;
+	public T pop() throws Exception;
 
 	/**
 	 * Add two elements together. 
 	 */
-	public void add(T val1, T val2) throws Exception;
+	public void add() throws Exception;
 
 	/**
 	 * Subtract one element from another. 
 	 */
-	public void subtract(T val1, T val2) throws Exception;
+	public void subtract() throws Exception;
 
 	/**
 	 * Multiply two elements.
 	 */
-	public void multiply(T val1, T val2) throws Exception;
+	public void multiply() throws Exception;
 
 	/**
 	 * Divide one element by another. 
 	 */
-	public void divide(T val1, T val2) throws Exception;
+	public void divide() throws Exception;
 
 	/**
 	 * Raise an element to the power of another element. 
 	 */
-	public void exponentiate(T val1, T val2) throws Exception;
+	public void exponentiate() throws Exception;
 
 	/**
 	 * An iterator to iterate through the expression. 
@@ -54,7 +54,7 @@ public interface Stack<T> extends Iterable<T> {
 	/**
 	 * Print the top value on the stack.
 	 */
-	public void peek() throws Exception;
+	public T peek() throws Exception;
 
 	/**
 	 * Print the whole stack.
@@ -65,5 +65,11 @@ public interface Stack<T> extends Iterable<T> {
 	 * Clear the whole stack.
 	 */
 	public void clear() throws Exception;
+
+	boolean isEmpty();
+
+	boolean isFull();
+
+	T get() throws Exception;
 
 } // Stack<T> interface
