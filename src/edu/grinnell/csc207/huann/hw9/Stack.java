@@ -54,7 +54,7 @@ public interface Stack<T> extends Iterable<T> {
 	/**
 	 * Print the top value on the stack.
 	 */
-	public T peek() throws Exception;
+	public void peek() throws Exception;
 
 	/**
 	 * Print the whole stack.
@@ -66,8 +66,14 @@ public interface Stack<T> extends Iterable<T> {
 	 */
 	public void clear() throws Exception;
 
+	/**
+	 * Check if the stack is empty.
+	 */
 	boolean isEmpty();
 
+	/**
+	 * Check if the stack is full.
+	 */
 	boolean isFull();
 
 	T get() throws Exception;
