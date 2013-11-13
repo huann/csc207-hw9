@@ -33,12 +33,12 @@ public interface Stack<T> extends Iterable<T> {
 	 * Get the element at the top position of the stack.
 	 */
 	T get() throws Exception;
-	
+
 	/**
-	 * An iterator to iterate through the expression. 
+	 * An iterator to iterate through the expression.
 	 */
 	public Iterator<T> iterator();
-	
+
 	/**
 	 * Put val in at the position of the iterator, and move the iterator ahead
 	 * in the stack.
@@ -52,12 +52,12 @@ public interface Stack<T> extends Iterable<T> {
 	public T pop() throws Exception;
 
 	/**
-	 * Add two elements together. 
+	 * Add two elements together.
 	 */
 	public void add() throws Exception;
 
 	/**
-	 * Subtract one element from another. 
+	 * Subtract one element from another.
 	 */
 	public void subtract() throws Exception;
 
@@ -67,12 +67,12 @@ public interface Stack<T> extends Iterable<T> {
 	public void multiply() throws Exception;
 
 	/**
-	 * Divide one element by another. 
+	 * Divide one element by another.
 	 */
 	public void divide() throws Exception;
 
 	/**
-	 * Raise an element to the power of another element. 
+	 * Raise an element to the power of another element.
 	 */
 	public void exponentiate() throws Exception;
 
