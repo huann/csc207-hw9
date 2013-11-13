@@ -5,10 +5,40 @@ import java.util.Iterator;
 public interface Stack<T> extends Iterable<T> {
 
 	/**
+	 * Check if the stack is empty.
+	 */
+	boolean isEmpty();
+
+	/**
+	 * Check if the stack is full.
+	 */
+	boolean isFull();
+
+	/**
+	 * Print the top value on the stack.
+	 */
+	public void peek() throws Exception;
+
+	/**
+	 * Print the whole stack.
+	 */
+	public void see() throws Exception;
+
+	/**
 	 * Add a new element to the top of the stack.
 	 */
 	public void put(T val) throws Exception;
 
+	/**
+	 * Get the element at the top position of the stack.
+	 */
+	T get() throws Exception;
+	
+	/**
+	 * An iterator to iterate through the expression. 
+	 */
+	public Iterator<T> iterator();
+	
 	/**
 	 * Put val in at the position of the iterator, and move the iterator ahead
 	 * in the stack.
@@ -47,35 +77,7 @@ public interface Stack<T> extends Iterable<T> {
 	public void exponentiate() throws Exception;
 
 	/**
-	 * An iterator to iterate through the expression. 
-	 */
-	public Iterator<T> iterator();
-
-	/**
-	 * Print the top value on the stack.
-	 */
-	public void peek() throws Exception;
-
-	/**
-	 * Print the whole stack.
-	 */
-	public void see() throws Exception;
-
-	/**
 	 * Clear the whole stack.
 	 */
 	public void clear() throws Exception;
-
-	/**
-	 * Check if the stack is empty.
-	 */
-	boolean isEmpty();
-
-	/**
-	 * Check if the stack is full.
-	 */
-	boolean isFull();
-
-	T get() throws Exception;
-
 } // Stack<T> interface

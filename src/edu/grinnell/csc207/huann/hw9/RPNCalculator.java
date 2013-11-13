@@ -8,11 +8,8 @@ import java.lang.Math;
  * @author Kyle Moorehead
  * @author Tim Youtz
  * 
- *         Citation: We referred to the following for the idea of using
- *         Double.parseDouble:
- *         http://stackoverflow.com/questions/5769669/convert
- *         -value-string-to-double
- * 
+ * Citation: We referred to the following for the idea of using Double.parseDouble:
+ * http://stackoverflow.com/questions/5769669/convert-value-string-to-double
  */
 
 public class RPNCalculator<T> implements Stack<T> {
@@ -45,7 +42,7 @@ public class RPNCalculator<T> implements Stack<T> {
 		} // if (capacity <= 0)
 		this.values = (T[]) new Object[capacity];
 		this.size = 0;
-	} // ArrayBasedStack(int)
+	} // RPNCalculator(int)
 
 	// +-------------------------+-----------------------------------------
 	// | LinearStructure Methods |
@@ -63,15 +60,15 @@ public class RPNCalculator<T> implements Stack<T> {
 
 	@Override
 	public void peek() {
-		System.out.print(this.values[this.size - 1]);
+		System.out.print(this.values[this.size - 1] + " ");
 	} // peek()
 
 	@Override
 	public void see() throws Exception {
 		for (int i = 0; i < size; i++) {
-			System.out.print(this.values[i]);
-		}
-	}
+			System.out.print(this.values[i] + " ");
+		} // for
+	} // see()
 
 	@Override
 	public void put(T val) throws Exception {
@@ -113,7 +110,7 @@ public class RPNCalculator<T> implements Stack<T> {
 		a = Double.parseDouble((String) pop());
 		b = Double.parseDouble((String) pop());
 		push((T) (String.valueOf(a + b)));
-	}
+	} // add()
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -122,7 +119,7 @@ public class RPNCalculator<T> implements Stack<T> {
 		a = Double.parseDouble((String) pop());
 		b = Double.parseDouble((String) pop());
 		push((T) (String.valueOf(b - a)));
-	}
+	} // subtract()
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -131,7 +128,7 @@ public class RPNCalculator<T> implements Stack<T> {
 		a = Double.parseDouble((String) pop());
 		b = Double.parseDouble((String) pop());
 		push((T) (String.valueOf(a * b)));
-	}
+	} // multiply()
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -140,7 +137,7 @@ public class RPNCalculator<T> implements Stack<T> {
 		a = Double.parseDouble((String) pop());
 		b = Double.parseDouble((String) pop());
 		push((T) (String.valueOf(b / a)));
-	}
+	} // divide
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -149,7 +146,7 @@ public class RPNCalculator<T> implements Stack<T> {
 		a = Double.parseDouble((String) pop());
 		b = Double.parseDouble((String) pop());
 		push((T) (String.valueOf(Math.pow(b, a))));
-	}
+	} // exponentiate()
 
 	@Override
 	public void clear() throws Exception {
@@ -163,7 +160,10 @@ public class RPNCalculator<T> implements Stack<T> {
 	 * in the form of a string, evaluate the expression accordingly. Supports
 	 * addition, subtraction, multiplication, division, printing the top value,
 	 * printing the whole stack, clearing the stack, and exponentiation.
+	 * 
+	 * @pre String parameter must be in RPN format.
 	 */
+	
 	@SuppressWarnings({ "unchecked" })
 	public T rpnEval(String expr) throws Exception {
 		// use the spaces in the expression as a separator
@@ -200,7 +200,6 @@ public class RPNCalculator<T> implements Stack<T> {
 		return pop();
 	} // rpnEval(string [])
 } // RPNCalculator
-
 
 class RPNIterator<T> implements Iterator<T> {
 	// +--------+----------------------------------------------------------
@@ -243,6 +242,6 @@ class RPNIterator<T> implements Iterator<T> {
 
 	@Override
 	public void remove() {
-		// TODO Auto-generated method stub		
+		// TODO Auto-generated method stub
 	}
 }
