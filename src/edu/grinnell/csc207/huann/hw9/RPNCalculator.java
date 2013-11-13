@@ -155,8 +155,8 @@ public class RPNCalculator<T> implements Stack<T> {
 	public void clear() throws Exception {
 		while (size > 0) {
 			pop();
-		}
-	}
+		} // while
+	} // clear()
 
 	/*
 	 * Given a simple arithmetic expression written in Reverse Polish Notation
@@ -201,6 +201,7 @@ public class RPNCalculator<T> implements Stack<T> {
 	} // rpnEval(string [])
 } // RPNCalculator
 
+
 class RPNIterator<T> implements Iterator<T> {
 	// +--------+----------------------------------------------------------
 	// | Fields |
@@ -242,7 +243,6 @@ class RPNIterator<T> implements Iterator<T> {
 
 	@Override
 	public void remove() {
-		// TODO Auto-generated method stub
-		
+		// TODO Auto-generated method stub		
 	}
 }
