@@ -8,8 +8,10 @@ import java.lang.Math;
  * @author Kyle Moorehead
  * @author Tim Youtz
  * 
- * Citation: We referred to the following for the idea of using Double.parseDouble:
- * http://stackoverflow.com/questions/5769669/convert-value-string-to-double
+ *         Citation: We referred to the following for the idea of using
+ *         Double.parseDouble:
+ *         http://stackoverflow.com/questions/5769669/convert
+ *         -value-string-to-double
  */
 
 public class RPNCalculator<T> implements Stack<T> {
@@ -163,7 +165,7 @@ public class RPNCalculator<T> implements Stack<T> {
 	 * 
 	 * @pre String parameter must be in RPN format.
 	 */
-	
+
 	@SuppressWarnings({ "unchecked" })
 	public T rpnEval(String expr) throws Exception {
 		// use the spaces in the expression as a separator
@@ -228,6 +230,8 @@ class RPNIterator<T> implements Iterator<T> {
 		this.values = (T[]) abs.values;
 	} // RPNIterator
 
+	// We're not actually using the iterator, so these are not implemented, but
+	// Eclipse made us put these in.
 	@Override
 	public boolean hasNext() {
 		// TODO Auto-generated method stub
@@ -244,4 +248,4 @@ class RPNIterator<T> implements Iterator<T> {
 	public void remove() {
 		// TODO Auto-generated method stub
 	}
-}
+} // class RPNIterator<T>
